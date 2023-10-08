@@ -5,6 +5,7 @@ import {
 } from "react-router-dom";
 
 import App  from "../app/App";
+import Login  from "../app/login/login";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
     //     loader: teamLoader,
     //   },
     // ],
+  },
+  {
+    path: "/login",
+    element: <Login/>,
   },
 ]);
 
