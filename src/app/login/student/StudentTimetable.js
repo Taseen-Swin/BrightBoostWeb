@@ -39,7 +39,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 const drawerWidth = 240;
 
 
-export default function StudentHome() {
+export default function StudentTimetable() {
   return (
     <>
     <Box sx={{ display: 'flex' }}>

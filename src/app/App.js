@@ -41,6 +41,15 @@ function App() {
               fullWidth
               variant="contained"
               sx={{ mt: 1, mb: 2 }}
+              href="/StudentHome"
+            >
+              Student Home Pages
+            </Button>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 1, mb: 2 }}
               href="/AdminLogin"
             >
               Admin Login Page
@@ -54,6 +63,7 @@ function App() {
             >
               Admin Pages
             </Button>
+            
     </div>
     </Box>
     </CssBaseline>
