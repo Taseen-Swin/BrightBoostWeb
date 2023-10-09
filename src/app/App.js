@@ -1,24 +1,63 @@
 import logo from '../assists/logo.svg';
 import './App.css';
+import * as React from "react";
+import CssBaseline from '@mui/material/CssBaseline';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <ThemeProvider theme={darkTheme}>
+    <CssBaseline>
+    <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
         >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Typography component="h1" variant="h3">Directory for all pages</Typography>
+      <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+              href="/StudentLogin"
+            >
+              Student Sign In/Up page
+            </Button>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 1, mb: 2 }}
+              href="/AdminLogin"
+            >
+              Admin Login Page
+            </Button>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 1, mb: 2 }}
+              href="/AdminHome"
+            >
+              Admin Pages
+            </Button>
     </div>
+    </Box>
+    </CssBaseline>
+    </ThemeProvider>
   );
 }
 

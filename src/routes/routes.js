@@ -7,6 +7,16 @@ import {
 import App  from "../app/App";
 import Login  from "../app/login/login";
 
+import SideNav from '../components/SideNav';
+import AdminHome from '../app/login/admin/AdminHome';
+import AdminQA from '../app/login/admin/AdminQA';
+import AdminFeedback from '../app/login/admin/AdminFeedback';
+import AdminTimetable from '../app/login/admin/AdminTimetable';
+import AdminProfile from '../app/login/admin/AdminProfile';
+import StudentLogin from '../app/login/student/StudentLogin';
+import StudentSignup from '../app/login/student/StudentSignUp';
+import AdminLogin from '../app/login/admin/AdminLogin';
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -24,6 +34,44 @@ const router = createBrowserRouter([
     path: "/login",
     element: <Login/>,
   },
+  {
+    path: "StudentLogin",
+    element: <StudentLogin/>,
+  },
+  {
+    path: "StudentSignup",
+    element: <StudentSignup/>,
+  },
+  {
+    path: "SideNav",
+    element: <SideNav/>,
+  },
+  {
+    path: "AdminHome",
+    element: <AdminHome/>,
+  },
+  
+  {
+    path: "AdminQA",
+    element: <AdminQA/>,
+  },
+  {
+    path: "AdminFeedback",
+    element: <AdminFeedback/>,
+  },
+  {
+    path: "AdminTimetable",
+    element: <AdminTimetable/>,
+  },
+  {
+    path: "AdminProfile",
+    element: <AdminProfile/>,
+  },
+  {
+    path: "AdminLogin",
+    element: <AdminLogin/>,
+  },
+
 ]);
 
 

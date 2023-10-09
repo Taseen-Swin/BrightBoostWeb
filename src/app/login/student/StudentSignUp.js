@@ -12,7 +12,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import CenteredTabs from '../../components/CenteredTab';
+import CenteredTabs from '../../../components/CenteredTab';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 
 function Copyright(props) {

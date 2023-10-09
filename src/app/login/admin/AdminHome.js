@@ -1,5 +1,5 @@
 import React from 'react';
-import SideNav from '../../components/SideNav';
+import SideNav from '../../../components/SideNav';
 import { Box } from '@mui/system';
 import { Typography } from '@mui/material';
 import { styled, useTheme } from '@mui/material/styles';
@@ -7,7 +7,7 @@ import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import Navbar from '../../components/Navbar';
+import Navbar from '../../../components/Navbar';
 
 const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
