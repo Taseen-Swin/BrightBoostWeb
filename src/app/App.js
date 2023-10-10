@@ -1,5 +1,6 @@
 import logo from '../assists/logo.svg';
 import './App.css';
+import { Outlet } from "react-router-dom";
 
 function App() {
   return (
@@ -18,6 +19,9 @@ function App() {
           Learn React
         </a>
       </header>
+      <div id="detail">
+        <Outlet />
+      </div>
     </div>
   );
 }
