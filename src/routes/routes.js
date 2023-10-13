@@ -4,20 +4,19 @@ import {
   createBrowserRouter,
 } from "react-router-dom";
 import App  from "../app/App";
-import Login  from "../app/login/login";
 import SideNav from '../components/SideNav';
-import AdminHome from '../app/login/admin/AdminHome';
-import AdminQA from '../app/login/admin/AdminQA';
-import AdminFeedback from '../app/login/admin/AdminFeedback';
-import AdminTimetable from '../app/login/admin/AdminTimetable';
-import AdminProfile from '../app/login/admin/AdminProfile';
-import StudentLogin from '../app/login/student/StudentLogin';
-import StudentSignup from '../app/login/student/StudentSignUp';
-import AdminLogin from '../app/login/admin/AdminLogin';
-import StudentHome from '../app/login/student/StudentHome';
-import StudentQA from "../app/login/student/StudentQA";
-import StudentTimetable from "../app/login/student/StudentTimetable";
-import StudentEnrolment from "../app/login/student/StudentEnrolment";
+import AdminHome from '../app/admin/AdminHome';
+import AdminQA from '../app/admin/AdminQA';
+import AdminFeedback from '../app/admin/AdminFeedback';
+import AdminTimetable from '../app/admin/AdminTimetable';
+import AdminProfile from '../app/admin/AdminProfile';
+import StudentLogin from '../app/student/StudentLogin';
+import StudentSignup from '../app/student/StudentSignUp';
+import AdminLogin from '../app/admin/AdminLogin';
+import StudentHome from '../app/student/StudentHome';
+import StudentQA from "../app/student/StudentQA";
+import StudentTimetable from "../app/student/StudentTimetable";
+import StudentEnrolment from "../app/student/StudentEnrolment";
 
 const router = createBrowserRouter([
   {
@@ -31,10 +30,6 @@ const router = createBrowserRouter([
     //     loader: teamLoader,
     //   },
     // ],
-  },
-  {
-    path: "/login",
-    element: <Login/>,
   },
   {
     path: "StudentHome",

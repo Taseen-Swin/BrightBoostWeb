@@ -8,7 +8,7 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { DataGrid } from '@mui/x-data-grid';
-import StudentDataTable from '../../../components/EnrolmentDatatable';
+import StudentDataTable from '../../components/EnrolmentDatatable';
 
 
 const DrawerHeader = styled('div')(({ theme }) => ({
