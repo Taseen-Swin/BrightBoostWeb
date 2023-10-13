@@ -33,9 +33,9 @@ export default function StudentDataTable() {
   const [enrolledIds, setEnrolledIds] = React.useState([]);
 
   const columns = [
-      { field: 'id', headerName: 'ID', width: 70 },
+      { field: 'id', headerName: 'Class ID', width: 70 },
       { field: 'Course', headerName: 'Course', width: 330 },
-      { field: 'Tutors', headerName: 'Tutors', width: 130 },
+      { field: 'Days', headerName: 'Days', width: 130 },
       {
           field: 'Time',
           headerName: 'Time Slot',
@@ -52,15 +52,15 @@ export default function StudentDataTable() {
   ];
 
   const rows = [
-    { id: 1, Tutors: 'Snow', Course: 'Math for Business', Time: timeSlots[0] },
-    { id: 2, Tutors: 'Lannister', Course: 'English Languages for Beginner', Time: timeSlots[1] },
-    { id: 3, Tutors: 'Lannister', Course: 'Coding for Beginner', Time: timeSlots[2] },
-    { id: 4, Tutors: 'Stark', Course: 'Coding for Professional', Time: timeSlots[3] },
-    { id: 5, Tutors: 'Targaryen', Course: 'Mastery in ChatGPT', Time: timeSlots[4] },
-    { id: 6, Tutors: 'Melisandre', Course: null, Time: timeSlots[5] },
-    { id: 7, Tutors: 'Clifford', Course: 'Learn Thai for "Business"', Time: timeSlots[6] },
-    { id: 8, Tutors: 'Frances', Course: 'Meme Genarator', Time: timeSlots[7] },
-    { id: 9, Tutors: 'Roxie', Course: 'Project inquiry', Time: timeSlots[8] },
+    { id: 101, Days: 'Mon', Course: 'Math for Business', Time: timeSlots[0] },
+    { id: 102, Days: 'Mon', Course: 'English Languages for Beginner', Time: timeSlots[1] },
+    { id: 103, Days: 'Mon', Course: 'Coding for Beginner', Time: timeSlots[2] },
+    { id: 104, Days: 'Tue', Course: 'Coding for Professional', Time: timeSlots[3] },
+    { id: 105, Days: 'Tue', Course: 'Mastery in ChatGPT', Time: timeSlots[4] },
+    { id: 106, Days: 'Wed', Course: null, Time: timeSlots[5] },
+    { id: 107, Days: 'Thurs', Course: 'Learn Thai for "Business"', Time: timeSlots[6] },
+    { id: 108, Days: 'Fri', Course: 'Meme Genarator', Time: timeSlots[7] },
+    { id: 109, Days: 'Fri', Course: 'Project inquiry', Time: timeSlots[8] },
 ];
 
   return (
@@ -74,7 +74,6 @@ export default function StudentDataTable() {
                   },
               }}
               pageSizeOptions={[5, 10]}
-              checkboxSelection
           />
       </div>
   );

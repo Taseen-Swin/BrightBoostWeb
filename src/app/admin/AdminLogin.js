@@ -13,7 +13,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { CenterFocusStrong } from '@mui/icons-material';
-import CenteredTabs from '../../../components/CenteredTab';
+import CenteredTabs from '../../components/CenteredTab';
 
 const darkTheme = createTheme({
   palette: {

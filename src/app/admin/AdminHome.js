@@ -1,5 +1,5 @@
 import React from 'react';
-import StudentSideNav from './StudentSideNav';
+import SideNav from '../../components/SideNav';
 import { Box } from '@mui/system';
 import { Typography } from '@mui/material';
 import { styled, useTheme } from '@mui/material/styles';
@@ -7,8 +7,9 @@ import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import { DataGrid } from '@mui/x-data-grid';
-import StudentDataTable from '../../../components/EnrolmentDatatable';
+import Navbar from '../../components/Navbar';
+import AdminEnrolmentDatatable from '../../components/AdminEnrolmentDatatable';
+import AdminQADatatable from '../../components/AdminQADatatable';
 
 
 const DrawerHeader = styled('div')(({ theme }) => ({
@@ -41,25 +42,28 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 const drawerWidth = 240;
 
 
-export default function StudentEnrolment() {
+export default function AdminHome() {
   return (
     <>
     <Box sx={{ display: 'flex' }}>
-    <StudentSideNav/>
+    <SideNav/>
     <Box component="main" sx={{flexGrow: 1, p: 3}}>
         <DrawerHeader />
-        <Typography component="h1" variant="h4" sx={{flexGrow: 1, p: 1}}>Enrolment Page</Typography>
+        <Typography component="h1" variant="h4" sx={{flexGrow: 1, p: 1}}>Admin Homepage</Typography>
         <Typography paragraph>
-        Please selected the class you interested below; <br />
-          Once clicked, you will be enrolled. <br />
-          Decided to withdraw the option ?, please contact studentHQ<br />
+          Class statistic
         </Typography>
-        <div style={{ height: 400, width: '100%' }}>
-          <StudentDataTable></StudentDataTable>
-        </div>
+        <AdminEnrolmentDatatable></AdminEnrolmentDatatable>
+    
+        <Typography paragraph>
+          Tutor Q&A statistic
+        </Typography>
+        <AdminQADatatable></AdminQADatatable>
+
       </Box>
     </Box>
 
      </>
   )
 }
+
