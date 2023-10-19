@@ -20,11 +20,6 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-  },
-});
 
 function Copyright(props) {
   return (
@@ -47,7 +42,7 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
-export default function AdminLogin() {
+export default function TutorLogin() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -76,7 +71,7 @@ const handleClose = () => {
 
 
   return (
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -93,7 +88,7 @@ const handleClose = () => {
           <Typography component="h1" variant="h4">
            Bright Boost </Typography>
             <Typography component="h1" variant="h5" style={{whiteSpace: 'pre-line'}}>
-           After School Programs : Admin<br /><br /></Typography>
+           After School Programs : Tutor<br /><br /></Typography>
           <Typography component="h1" variant="h4">
            Sign in
           </Typography>

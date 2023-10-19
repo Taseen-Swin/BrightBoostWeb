@@ -8,7 +8,8 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Navbar from '../../components/Navbar';
 import StudentSideNav from './StudentSideNav';
-import { StudentTimetableComp } from '../../components/StudentTimetable';
+import { TimetableComp } from '../../components/TimetableComp';
+
 
 const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -47,11 +48,12 @@ export default function StudentTimetable() {
     <StudentSideNav/>
     <Box component="main" sx={{flexGrow: 1, p: 3}}>
         <DrawerHeader />
-        <Typography component="h1" variant="h4" sx={{flexGrow: 1, p: 1}}>Admin Homepage</Typography>
+        <Typography component="h1" variant="h4" sx={{flexGrow: 1, p: 1}}>Student Timetable</Typography>
         <Typography paragraph>
           Place for statistic and graph
         </Typography>
-        <StudentTimetableComp></StudentTimetableComp>
+        <TimetableComp></TimetableComp>
+
       </Box>
     </Box>
 

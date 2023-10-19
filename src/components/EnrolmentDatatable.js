@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import Button from '@mui/material/Button';
+import { Dialog, DialogTitle, DialogContent, DialogActions, RadioGroup, FormControlLabel, Radio, TextField } from '@mui/material';
+import { Typography } from '@mui/material';
 
 const timeSlots = [
   "09:00 - 10:00",
@@ -28,9 +30,68 @@ const ActionButton = ({ id, enrolledIds, setEnrolledIds }) => {
   );
 }
 
+const FeedbackDialog = ({ open, onClose }) => {
+    const [rating, setRating] = React.useState('5');
+    const [comment, setComment] = React.useState('');
+  
+    const handleSubmit = () => {
+      // Process the feedback here (e.g., send it to a backend API)
+      console.log(`Rating: ${rating}, Comment: ${comment}`);
+      onClose();
+    };
+  
+    return (
+      <Dialog open={open} onClose={onClose}>
+        <DialogTitle>Give Feedback</DialogTitle>
+        <DialogContent>
+          <Typography variant="h6">Rating:</Typography>
+          <RadioGroup
+            row
+            value={rating}
+            onChange={(event) => setRating(event.target.value)}
+          >
+            {[5, 4, 3, 2, 1].map((star) => (
+              <FormControlLabel
+                key={star}
+                value={String(star)}
+                control={<Radio color="primary" />}
+                label={`${star} Stars`}
+              />
+            ))}
+          </RadioGroup>
+          <TextField
+            fullWidth
+            margin="dense"
+            variant="outlined"
+            label="Comment"
+            multiline
+            rows={4}
+            value={comment}
+            onChange={(event) => setComment(event.target.value)}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={onClose} color="primary">Cancel</Button>
+          <Button onClick={handleSubmit} color="primary">Submit</Button>
+        </DialogActions>
+      </Dialog>
+    );
+  };
+
+
 
 export default function StudentDataTable() {
   const [enrolledIds, setEnrolledIds] = React.useState([]);
+
+  const [feedbackOpen, setFeedbackOpen] = React.useState(false);
+
+  const handleOpenFeedback = () => {
+    setFeedbackOpen(true);
+  };
+
+  const handleCloseFeedback = () => {
+    setFeedbackOpen(false);
+  };
 
   const columns = [
       { field: 'id', headerName: 'Class ID', width: 70 },
@@ -49,7 +110,18 @@ export default function StudentDataTable() {
           width: 230,
           renderCell: (params) => <ActionButton id={params.row.id} enrolledIds={enrolledIds} setEnrolledIds={setEnrolledIds} />,
       },
-  ];
+      {
+        field: 'feedback',
+        headerName: 'Feedback',
+        sortable: false,
+        width: 150,
+        renderCell: () => (
+          <Button variant="outlined" color="primary" onClick={handleOpenFeedback}>
+            Give Feedback
+          </Button>
+        ),
+      },
+    ];
 
   const rows = [
     { id: 101, Days: 'Mon', Course: 'Math for Business', Time: timeSlots[0] },
@@ -63,6 +135,8 @@ export default function StudentDataTable() {
     { id: 109, Days: 'Fri', Course: 'Project inquiry', Time: timeSlots[8] },
 ];
 
+
+
   return (
       <div style={{ height: 400, width: '100%' }}>
           <DataGrid
@@ -75,6 +149,7 @@ export default function StudentDataTable() {
               }}
               pageSizeOptions={[5, 10]}
           />
+          <FeedbackDialog open={feedbackOpen} onClose={handleCloseFeedback} />
       </div>
   );
 }

@@ -1,5 +1,4 @@
 import React from 'react';
-import SideNav from '../../components/SideNav';
 import { Box } from '@mui/system';
 import { Typography } from '@mui/material';
 import { styled, useTheme } from '@mui/material/styles';
@@ -7,7 +6,10 @@ import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import ClassFeedbackPage from '../../components/ClassFeedbackPage';
+import Navbar from '../../components/Navbar';
+import TutorSideNav from './TutorSideNav';
+import TutorClasses from '../../components/TutorClasses';
+
 
 const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -39,15 +41,16 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 const drawerWidth = 240;
 
 
-export default function AdminFeedback() {
+export default function TutorHome() {
   return (
     <>
     <Box sx={{ display: 'flex' }}>
-    <SideNav/>
-    <Box component="main" sx={{flexGrow: 1, p: 3}}>
+    <TutorSideNav/>
+    <Box component="main" sx={{flexGrow: 1, p: 2}}>
         <DrawerHeader />
-        <Typography component="h1" variant="h4" sx={{flexGrow: 1, p: 1}}>Admin Feedback Page</Typography>
-        <ClassFeedbackPage></ClassFeedbackPage>
+        <Typography component="h1" variant="h4" sx={{flexGrow: 1, p: 1}}>Welcome Tutor</Typography>
+        <Box sx={{ width: 300, bgcolor: 'background.paper'}}> <TutorClasses></TutorClasses> </Box>
+        
       </Box>
     </Box>
 

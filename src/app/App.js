@@ -61,7 +61,25 @@ function App() {
               sx={{ mt: 1, mb: 2 }}
               href="/AdminHome"
             >
-              Admin Pages
+              Admin Home Pages
+            </Button>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 1, mb: 2 }}
+              href="/TutorLogin"
+            >
+              Tutor Login Pages
+            </Button>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 1, mb: 2 }}
+              href="/TutorHome"
+            >
+              Tutor Home Pages
             </Button>
             
     </div>
