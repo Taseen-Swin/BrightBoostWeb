@@ -1,83 +1,129 @@
-import React from 'react';
-import {
-  Card, CardHeader, CardContent, Avatar, Typography, Accordion,
-  AccordionSummary, AccordionDetails, TextField, Button
-} from '@mui/material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import React, { useState, useEffect } from 'react';
+import { Button, List, ListItem, ListItemText, TextField, Typography, Paper, Divider } from '@mui/material';
+import { courseData, postQuestionToCourse } from '../components/SharedDataStore';
 
-// Dummy data
-const dummyData = [
-    {
-        studentName: 'Alice',
-        question: 'What is React?',
-        answers: [
-            {
-                tutorName: 'Tutor1',
-                answer: 'React is a JavaScript library for building user interfaces.'
-            }
-        ]
-    },
-    {
-        studentName: 'Bob',
-        question: 'What are React hooks?',
-        answers: [
-            {
-                tutorName: 'Tutor2',
-                answer: 'Hooks are a feature introduced in React 16.8 that allow you to use state and other React features without writing a class.'
-            }
-        ]
+const timeSlots = [
+    "09:00 - 10:00",
+    "10:00 - 11:00",
+    "11:00 - 12:00",
+    "12:00 - 13:00",
+    "13:00 - 14:00",
+    "14:00 - 15:00",
+    "15:00 - 16:00",
+    "16:00 - 17:00",
+    "17:00 - 18:00"
+  ];
+  
+   const rows = [
+      { id: 101, Days: 'Mon', Course: 'Math for Business', Time: timeSlots[0] },
+      { id: 102, Days: 'Mon', Course: 'English Languages for Beginner', Time: timeSlots[1] },
+      { id: 103, Days: 'Mon', Course: 'Coding for Beginner', Time: timeSlots[2] },
+      { id: 104, Days: 'Tue', Course: 'Coding for Professional', Time: timeSlots[3] },
+      { id: 105, Days: 'Tue', Course: 'Mastery in ChatGPT', Time: timeSlots[4] },
+      { id: 106, Days: 'Wed', Course: null, Time: timeSlots[5] },
+      { id: 107, Days: 'Thurs', Course: 'Learn Thai for "Business"', Time: timeSlots[6] },
+      { id: 108, Days: 'Fri', Course: 'Meme Genarator', Time: timeSlots[7] },
+      { id: 109, Days: 'Fri', Course: 'Project inquiry', Time: timeSlots[8] },
+  ];
+
+// Mock API
+const API = {
+  fetchCourses: () => Promise.resolve(rows),
+  postQuestion: (id, question) => Promise.resolve(true), // This should ideally update the database or backend system
+};
+
+function StudentQnABoard() {
+  const [courses, setCourses] = useState([]);
+  const [selectedCourse, setSelectedCourse] = useState(null);
+  const [question, setQuestion] = useState('');
+
+  useEffect(() => {
+    API.fetchCourses().then(fetchedCourses => {
+      setCourses(fetchedCourses);
+    });
+  }, []);
+
+  const handleQuestionSubmit = () => {
+    if (selectedCourse) {
+      if (postQuestionToCourse(selectedCourse.id, question)) {
+        const updatedCourses = courses.map(course => {
+          if (course.id === selectedCourse.id) {
+            return { ...course, question };
+          }
+          return course;
+        });
+        setCourses(updatedCourses);
+        setQuestion('');
+        alert('Your question has been submitted!');
+      } else {
+        alert('Error submitting your question. Please try again.');
+      }
     }
-];
+  };
 
+  /*
+  const handleQuestionSubmit = () => {
+    if (selectedCourse) {
+      API.postQuestion(selectedCourse.id, question).then(success => {
+        if (success) {
+          const updatedCourses = courses.map(course => {
+            if (course.id === selectedCourse.id) {
+              return { ...course, question };
+            }
+            return course;
+          });
+          setCourses(updatedCourses);
+          setQuestion('');
+          alert('Your question has been submitted!');
+        } else {
+          alert('Error submitting your question. Please try again.');
+        }
+      });
+    }
+  }; */
 
-function Question({ data }) {
-    return (
-        <Card style={{ marginBottom: '15px' }}>
-            <CardHeader
-                avatar={
-                    <Avatar>{data.studentName.charAt(0)}</Avatar>
-                }
-                title={data.studentName}
-                subheader="asked:"
+  return (
+    <Paper elevation={3} style={{ padding: '16px' }}>
+      <Typography variant="h4">Course Schedule & Q&A</Typography>
+      <Divider style={{ margin: '16px 0' }}/>
+      <List>
+        {courses.map(course => (
+          <ListItem key={course.id} button onClick={() => setSelectedCourse(course)}>
+            <ListItemText 
+              primary={`[${course.Days}] ${course.Course || 'TBD'} - ${course.Time}`}
+              secondary={course.question ? `Q: ${course.question}` : ''}
             />
-            <CardContent>
-                <Typography variant="body1">{data.question}</Typography>
-            </CardContent>
-            {data.answers.map((answer, index) => (
-                <Accordion key={index}>
-                    <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                        <Avatar>{answer.tutorName.charAt(0)}</Avatar>
-                        <Typography style={{ marginLeft: '10px' }}>{answer.tutorName} answered:</Typography>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                        <Typography>{answer.answer}</Typography>
-                    </AccordionDetails>
-                </Accordion>
-            ))}
-        </Card>
-    );
-}
-
-export default function StudentQnABoard() {
-    const [newQuestion, setNewQuestion] = React.useState('');
-
-    return (
+          </ListItem>
+        ))}
+      </List>
+      {selectedCourse && (
         <div>
-            <h2>Student Q&A Board</h2>
-            <TextField
-                variant="outlined"
-                label="Ask a new question"
-                fullWidth
-                value={newQuestion}
-                onChange={e => setNewQuestion(e.target.value)}
-                style={{ marginBottom: '15px' }}
-            />
-            <Button variant="contained" color="primary" style={{ marginBottom: '15px' }}>
-                Submit Question
-            </Button>
-            {dummyData.map((qna, index) => (
-                <Question key={index} data={qna} />
-            ))}
+          <Typography variant="h6" style={{ marginTop: '16px' }}>
+            Post a question for {selectedCourse.Course || 'TBD'}
+          </Typography>
+          <TextField 
+            label="Your Question"
+            multiline 
+            rows={3}
+            variant="outlined"
+            value={question}
+            onChange={(e) => setQuestion(e.target.value)}
+            fullWidth
+            style={{ marginTop: '8px' }}
+          />
+          <Button 
+            variant="contained" 
+            color="primary"
+            onClick={handleQuestionSubmit}
+            style={{ marginTop: '8px' }}
+          >
+            Submit Question
+          </Button>
         </div>
-    );
+      )}
+    </Paper>
+  );
 }
+
+export default StudentQnABoard;
+

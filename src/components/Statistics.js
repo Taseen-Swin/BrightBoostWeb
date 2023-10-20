@@ -39,12 +39,12 @@ function Statistics() {
 
     const studentFeedbackData = rows.map(row => ({
         name: row.Time,
-        value: row.feedback
+        value: row.feedback //need to link with feedback score database
     }));
 
     const tutorResponsivenessData = rows.map(row => ({
         name: row.Time,
-        value: row.responsiveness
+        value: row.responsiveness //need to link with feedback score database
     }));
 
 
