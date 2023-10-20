@@ -226,7 +226,7 @@ export default function StudentSideNav() {
                 <ListItemText primary="Enrolment" sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
-            <ListItem disablePadding sx={{ display: 'block' }} onClick={()=>{navigate("")}}>
+            <ListItem disablePadding sx={{ display: 'block' }} onClick={()=>{navigate("/StudentProfile")}}>
               <ListItemButton
                 sx={{
                   minHeight: 48,

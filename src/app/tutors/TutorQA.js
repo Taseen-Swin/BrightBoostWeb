@@ -47,7 +47,7 @@ export default function TutorQA() {
     <TutorSideNav/>
     <Box component="main" sx={{flexGrow: 1, p: 3}}>
         <DrawerHeader />
-        <Typography component="h1" variant="h4" sx={{flexGrow: 1, p: 1}}>Student Q&A</Typography>
+        <Typography component="h1" variant="h4" sx={{flexGrow: 1, p: 1}}>Tutor Q&A</Typography>
           <TutorQnABoard></TutorQnABoard>
       </Box>
     </Box>

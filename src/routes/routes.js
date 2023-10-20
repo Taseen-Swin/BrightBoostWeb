@@ -21,6 +21,9 @@ import TutorLogin from "../app/tutors/TutorLogin";
 import TutorHome from "../app/tutors/TutorHome";
 import TutorQA from "../app/tutors/TutorQA";
 import TutorTimetable from "../app/tutors/TutorTimetable";
+import StudentProfile from "../app/student/StudentProfile";
+import TutorProfile from "../app/tutors/TutorProfile";
+import AdminStatistic from "../app/admin/AdminStatistic";
 
 
 const router = createBrowserRouter([
@@ -90,6 +93,14 @@ const router = createBrowserRouter([
     element: <AdminLogin/>,
   },
   {
+    path: "AdminStatistic",
+    element: <AdminStatistic/>,
+  },
+  {
+    path: "StudentProfile",
+    element: <StudentProfile/>,
+  },
+  {
     path: "TutorLogin",
     element: <TutorLogin/>,
   },
@@ -105,6 +116,11 @@ const router = createBrowserRouter([
     path: "TutorTimetable",
     element: <TutorTimetable/>,
   },
+  {
+    path: "TutorProfile",
+    element: <TutorProfile/>,
+  },
+
 
 
 

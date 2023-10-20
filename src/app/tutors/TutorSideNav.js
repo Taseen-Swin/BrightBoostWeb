@@ -207,7 +207,7 @@ export default function TutorSideNav() {
               </ListItemButton>
             </ListItem>
 
-            <ListItem disablePadding sx={{ display: 'block' }} onClick={()=>{navigate("")}}>
+            <ListItem disablePadding sx={{ display: 'block' }} onClick={()=>{navigate("/TutorProfile")}}>
               <ListItemButton
                 sx={{
                   minHeight: 48,

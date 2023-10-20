@@ -48,10 +48,7 @@ export default function TutorTimetable() {
     <TutorSideNav/>
     <Box component="main" sx={{flexGrow: 1, p: 3}}>
         <DrawerHeader />
-        <Typography component="h1" variant="h4" sx={{flexGrow: 1, p: 1}}>Student Timetable</Typography>
-        <Typography paragraph>
-          Place for statistic and graph
-        </Typography>
+        <Typography component="h1" variant="h4" sx={{flexGrow: 1, p: 1}}>Tutor Timetable</Typography>
         <TimetableComp></TimetableComp>
 
       </Box>

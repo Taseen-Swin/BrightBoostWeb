@@ -25,6 +25,7 @@ import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import FeedbackIcon from '@mui/icons-material/Feedback';
 import { useNavigate } from 'react-router-dom';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import AutoGraphIcon from '@mui/icons-material/AutoGraph';
 
 function HomeIcon(props) {
   return (
@@ -223,6 +224,26 @@ export default function SideNav() {
                   <FeedbackIcon />
                 </ListItemIcon>
                 <ListItemText primary="Class Feedback" sx={{ opacity: open ? 1 : 0 }} />
+              </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding sx={{ display: 'block' }} onClick={()=>{navigate("/AdminStatistic")}}>
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <AutoGraphIcon />
+                </ListItemIcon>
+                <ListItemText primary="Statistic" sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding sx={{ display: 'block' }} onClick={()=>{navigate("/AdminProfile")}}>
