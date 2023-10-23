@@ -8,6 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Navbar from '../../components/Navbar';
 import StudentSideNav from './StudentSideNav';
+import StudentQnABoard from '../../components/StudentQnABoard';
 
 const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -46,23 +47,8 @@ export default function StudentQA() {
     <StudentSideNav/>
     <Box component="main" sx={{flexGrow: 1, p: 3}}>
         <DrawerHeader />
-        <Typography component="h1" variant="h4" sx={{flexGrow: 1, p: 1}}>Admin Homepage</Typography>
-        <Typography paragraph>
-          Place for statistic and graph
-        </Typography>
-        <Typography paragraph>
-          Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper
-          eget nulla facilisi etiam dignissim diam. Pulvinar elementum integer enim
-          neque volutpat ac tincidunt. Ornare suspendisse sed nisi lacus sed viverra
-          tellus. Purus sit amet volutpat consequat mauris. Elementum eu facilisis
-          sed odio morbi. Euismod lacinia at quis risus sed vulputate odio. Morbi
-          tincidunt ornare massa eget egestas purus viverra accumsan in. In hendrerit
-          gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem
-          et tortor. Habitant morbi tristique senectus et. Adipiscing elit duis
-          tristique sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
-          eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
-          posuere sollicitudin aliquam ultrices sagittis orci a.
-        </Typography>
+        <Typography component="h1" variant="h4" sx={{flexGrow: 1, p: 1}}>Student Q&A</Typography>
+          <StudentQnABoard></StudentQnABoard>
       </Box>
     </Box>
 

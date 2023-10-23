@@ -8,6 +8,7 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ClassFeedbackPage from '../../components/ClassFeedbackPage';
+import Statistics from '../../components/Statistics';
 
 const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -39,15 +40,15 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 const drawerWidth = 240;
 
 
-export default function AdminFeedback() {
+export default function AdminStatistic() {
   return (
     <>
     <Box sx={{ display: 'flex' }}>
     <SideNav/>
     <Box component="main" sx={{flexGrow: 1, p: 3}}>
         <DrawerHeader />
-        <Typography component="h1" variant="h4" sx={{flexGrow: 1, p: 1}}>Admin Feedback Page</Typography>
-        <ClassFeedbackPage></ClassFeedbackPage>
+        <Typography component="h1" variant="h4" sx={{flexGrow: 1, p: 1}}>Performance Statistic Page</Typography>
+        <Statistics></Statistics>
       </Box>
     </Box>
 

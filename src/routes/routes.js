@@ -17,6 +17,14 @@ import StudentHome from '../app/student/StudentHome';
 import StudentQA from "../app/student/StudentQA";
 import StudentTimetable from "../app/student/StudentTimetable";
 import StudentEnrolment from "../app/student/StudentEnrolment";
+import TutorLogin from "../app/tutors/TutorLogin";
+import TutorHome from "../app/tutors/TutorHome";
+import TutorQA from "../app/tutors/TutorQA";
+import TutorTimetable from "../app/tutors/TutorTimetable";
+import StudentProfile from "../app/student/StudentProfile";
+import TutorProfile from "../app/tutors/TutorProfile";
+import AdminStatistic from "../app/admin/AdminStatistic";
+
 
 const router = createBrowserRouter([
   {
@@ -47,9 +55,6 @@ const router = createBrowserRouter([
     path: "StudentEnrolment",
     element: <StudentEnrolment/>,
   },
-  
-
-
   {
     path: "StudentLogin",
     element: <StudentLogin/>,
@@ -87,6 +92,37 @@ const router = createBrowserRouter([
     path: "AdminLogin",
     element: <AdminLogin/>,
   },
+  {
+    path: "AdminStatistic",
+    element: <AdminStatistic/>,
+  },
+  {
+    path: "StudentProfile",
+    element: <StudentProfile/>,
+  },
+  {
+    path: "TutorLogin",
+    element: <TutorLogin/>,
+  },
+  {
+    path: "TutorHome",
+    element: <TutorHome/>,
+  },
+  {
+    path: "TutorQA",
+    element: <TutorQA/>,
+  },
+  {
+    path: "TutorTimetable",
+    element: <TutorTimetable/>,
+  },
+  {
+    path: "TutorProfile",
+    element: <TutorProfile/>,
+  },
+
+
+
 
 ]);
 

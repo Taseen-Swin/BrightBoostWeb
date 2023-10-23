@@ -14,6 +14,11 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { CenterFocusStrong } from '@mui/icons-material';
 import CenteredTabs from '../../components/CenteredTab';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 const darkTheme = createTheme({
   palette: {
@@ -51,6 +56,24 @@ export default function AdminLogin() {
       password: data.get('password'),
     });
   };
+
+const [open, setOpen] = React.useState(false);
+const [dialogMessage, setDialogMessage] = React.useState(''); // New state
+
+const handleClickOpen = (messageType) => {
+  if (messageType === 'password') {
+    setDialogMessage('Please contact Head of Administrator for password recovery.');
+  } else {
+    setDialogMessage('Please contact Head of Administrator for account creation.');
+  }
+  setOpen(true);
+};
+
+
+const handleClose = () => {
+  setOpen(false);
+};
+
 
   return (
     <ThemeProvider theme={darkTheme}>
@@ -109,19 +132,42 @@ export default function AdminLogin() {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
+              <Link href="#" variant="body2" onClick={() => handleClickOpen('password')}>
+              Forgot password?
+            </Link>
               </Grid>
               <Grid item>
-                <Link href="/SignUp" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
+
+              <Link href="#" variant="body2" onClick={() => handleClickOpen('account')}>
+              {"Don't have an account?"}
+            </Link>
+
               </Grid>
             </Grid>
           </Box>
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
+
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">{""}</DialogTitle>
+          <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            {dialogMessage}
+          </DialogContentText>
+
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} color="primary">
+              Close
+            </Button>
+          </DialogActions>
+        </Dialog>
+
       </Container>
     </ThemeProvider>
   );

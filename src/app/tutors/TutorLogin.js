@@ -14,12 +14,12 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { CenterFocusStrong } from '@mui/icons-material';
 import CenteredTabs from '../../components/CenteredTab';
-import Apiservices  from '../../services/api.services';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+
 
 function Copyright(props) {
   return (
@@ -36,39 +36,44 @@ function Copyright(props) {
 
 // TODO remove, this demo shouldn't need to reset the theme.
 
+
+
+
+
 const defaultTheme = createTheme();
 
-export default function SignIn() {
+export default function TutorLogin() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-
-     const api = new Apiservices()
-     api.studentlogin(data.get('email'),data.get('password'))
     console.log({
       email: data.get('email'),
       password: data.get('password'),
     });
   };
-  const [open, setOpen] = React.useState(false);
+
+const [open, setOpen] = React.useState(false);
 const [dialogMessage, setDialogMessage] = React.useState(''); // New state
 
 const handleClickOpen = (messageType) => {
   if (messageType === 'password') {
     setDialogMessage('Please contact Head of Administrator for password recovery.');
-    }
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
+  } else {
+    setDialogMessage('Please contact Head of Administrator for account creation.');
+  }
+  setOpen(true);
+};
+
+
+const handleClose = () => {
+  setOpen(false);
+};
 
 
   return (
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
-        <CenteredTabs></CenteredTabs>
         <Box
           sx={{
             marginTop: 8,
@@ -80,12 +85,12 @@ const handleClickOpen = (messageType) => {
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
-            Welcome to Bright Boost </Typography>
-            <Typography component="h1" variant="h5" style={{whiteSpace: 'pre-line'}}>
-           After School Programs<br /><br /></Typography>
           <Typography component="h1" variant="h4">
-            Sign in
+           Bright Boost </Typography>
+            <Typography component="h1" variant="h5" style={{whiteSpace: 'pre-line'}}>
+           After School Programs : Tutor<br /><br /></Typography>
+          <Typography component="h1" variant="h4">
+           Sign in
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
@@ -127,21 +132,24 @@ const handleClickOpen = (messageType) => {
             </Link>
               </Grid>
               <Grid item>
-                <Link href="/StudentSignup" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
+
+              <Link href="#" variant="body2" onClick={() => handleClickOpen('account')}>
+              {"Don't have an account?"}
+            </Link>
+
               </Grid>
             </Grid>
           </Box>
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
+
         <Dialog
           open={open}
           onClose={handleClose}
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
         >
-          <DialogTitle id="alert-dialog-title">{"Password recovery"}</DialogTitle>
+          <DialogTitle id="alert-dialog-title">{""}</DialogTitle>
           <DialogContent>
           <DialogContentText id="alert-dialog-description">
             {dialogMessage}
@@ -154,6 +162,7 @@ const handleClickOpen = (messageType) => {
             </Button>
           </DialogActions>
         </Dialog>
+
       </Container>
     </ThemeProvider>
   );

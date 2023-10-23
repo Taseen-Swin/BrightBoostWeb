@@ -52,7 +52,7 @@ export default function StudentEnrolment() {
         <Typography paragraph>
         Please selected the class you interested below; <br />
           Once clicked, you will be enrolled. <br />
-          Decided to withdraw the option ?, please contact studentHQ<br />
+          Decided to withdraw the option ? - please contact studentHQ<br />
         </Typography>
         <div style={{ height: 400, width: '100%' }}>
           <StudentDataTable></StudentDataTable>

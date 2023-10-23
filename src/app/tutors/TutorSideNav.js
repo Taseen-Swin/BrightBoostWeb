@@ -102,7 +102,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-export default function StudentSideNav() {
+export default function TutorSideNav() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
   const navigate = useNavigate();
@@ -144,7 +144,7 @@ export default function StudentSideNav() {
           </IconButton>
         </DrawerHeader>
         <List>
-            <ListItem disablePadding sx={{ display: 'block' }} onClick={()=>{navigate("/StudentHome")}}>
+            <ListItem disablePadding sx={{ display: 'block' }} onClick={()=>{navigate("/TutorHome")}}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
@@ -165,7 +165,7 @@ export default function StudentSideNav() {
               </ListItemButton>
             </ListItem>
 
-            <ListItem disablePadding sx={{ display: 'block' }} onClick={()=>{navigate("/StudentQA")}}>
+            <ListItem disablePadding sx={{ display: 'block' }} onClick={()=>{navigate("/TutorQA")}}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
@@ -186,7 +186,7 @@ export default function StudentSideNav() {
               </ListItemButton>
             </ListItem>
 
-            <ListItem disablePadding sx={{ display: 'block' }} onClick={()=>{navigate("/StudentTimetable")}}>
+            <ListItem disablePadding sx={{ display: 'block' }} onClick={()=>{navigate("/TutorTimetable")}}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
@@ -206,27 +206,8 @@ export default function StudentSideNav() {
                 <ListItemText primary="Timetable" sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
-            <ListItem disablePadding sx={{ display: 'block' }} onClick={()=>{navigate("/StudentEnrolment")}}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
-                  }}
-                >
-                  <ChecklistRtlIcon />
-                </ListItemIcon>
-                <ListItemText primary="Enrolment" sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
-            <ListItem disablePadding sx={{ display: 'block' }} onClick={()=>{navigate("/StudentProfile")}}>
+
+            <ListItem disablePadding sx={{ display: 'block' }} onClick={()=>{navigate("/TutorProfile")}}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
