@@ -1,51 +1,60 @@
 import axios from "axios";
-import React from "react";
 
 const baseURL = "http://localhost:8000";
 
-
-export default class Apiservices {
-
+class ApiService {
     constructor() {
-
-    }
-
-    getRequest(path) {
-        axios.get(`${baseURL}/${path}`).then((response) => {
-            return response;
+        this.axiosInstance = axios.create({
+            baseURL,
         });
     }
 
-    postRequest(path, body) {
-        axios
-            .post(`${baseURL}/${path}`, body)
-            .then((response) => {
-                return response;
-            });
+    async getRequest(path) {
+        try {
+            const response = await this.axiosInstance.get(path);
+            return response.data;
+        } catch (error) {
+            throw error;
+        }
     }
 
-    putRequest(path, body) {
-        axios
-            .put(`${baseURL}/${path}`, body)
-            .then((response) => {
-                return response;
-            });
+    async postRequest(path, body) {
+        try {
+            const response = await this.axiosInstance.post(path, body);
+            return response.data;
+        } catch (error) {
+            throw error;
+        }
     }
 
-    deleteRequest(path, body) {
-        axios
-            .delete(`${baseURL}/${path}`)
-            .then((response) => {
-                return response;
-            });
+    async putRequest(path, body) {
+        try {
+            const response = await this.axiosInstance.put(path, body);
+            return response.data;
+        } catch (error) {
+            throw error;
+        }
     }
 
-    studentlogin(email, password) {
-        path = '/student/login'
-        body = { 'email': email, 'password': password }
-        return this.postRequest(path, body);
-
+    async deleteRequest(path) {
+        try {
+            const response = await this.axiosInstance.delete(path);
+            return response.data;
+        } catch (error) {
+            throw error;
+        }
     }
 
+    async studentLogin(email, password) {
+        const path = '/student/login';
+        const body = { email, password };
 
+        try {
+            return await this.postRequest(path, body);
+        } catch (error) {
+            throw error;
+        }
+    }
 }
+
+export default new ApiService();
