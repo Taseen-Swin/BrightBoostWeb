@@ -14,6 +14,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { CenterFocusStrong } from '@mui/icons-material';
 import CenteredTabs from '../../components/CenteredTab';
+import Apiservices  from '../../services/api.services';
 
 function Copyright(props) {
   return (
@@ -36,6 +37,9 @@ export default function SignIn() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+
+     const api = new Apiservices()
+     api.studentlogin(data.get('email'),data.get('password'))
     console.log({
       email: data.get('email'),
       password: data.get('password'),
