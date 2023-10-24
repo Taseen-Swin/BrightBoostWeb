@@ -14,7 +14,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { CenterFocusStrong } from '@mui/icons-material';
 import CenteredTabs from '../../components/CenteredTab';
-import Apiservices  from '../../services/api.services';
+import ApiService from '../../services/api.services';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -39,23 +39,29 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignIn() {
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
+    const i = new FormData(event.currentTarget);
 
-     const api = new Apiservices()
-     api.studentlogin(data.get('email'),data.get('password'))
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    const apiService = new ApiService();
+    const { data, status } = await apiService.studentLogin(i.get('email'), i.get('password'));
+    if (status == 200) {
+      const userID =data.user[0].id
+      const userEmail =data.user[0].email
+      console.log(userID)
+      localStorage.setItem('userID',userID);
+      localStorage.setItem('userEmail',userEmail);
+  
+    }
+    console.log("Response data:", data);
+    console.log("Response status:", status);
   };
   const [open, setOpen] = React.useState(false);
-const [dialogMessage, setDialogMessage] = React.useState(''); // New state
+  const [dialogMessage, setDialogMessage] = React.useState(''); // New state
 
-const handleClickOpen = (messageType) => {
-  if (messageType === 'password') {
-    setDialogMessage('Please contact Head of Administrator for password recovery.');
+  const handleClickOpen = (messageType) => {
+    if (messageType === 'password') {
+      setDialogMessage('Please contact Head of Administrator for password recovery.');
     }
     setOpen(true);
   };
@@ -82,8 +88,8 @@ const handleClickOpen = (messageType) => {
           </Avatar>
           <Typography component="h1" variant="h5">
             Welcome to Bright Boost </Typography>
-            <Typography component="h1" variant="h5" style={{whiteSpace: 'pre-line'}}>
-           After School Programs<br /><br /></Typography>
+          <Typography component="h1" variant="h5" style={{ whiteSpace: 'pre-line' }}>
+            After School Programs<br /><br /></Typography>
           <Typography component="h1" variant="h4">
             Sign in
           </Typography>
@@ -108,10 +114,10 @@ const handleClickOpen = (messageType) => {
               id="password"
               autoComplete="current-password"
             />
-            <FormControlLabel
+            {/* <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
-            />
+            /> */}
             <Button
               type="submit"
               fullWidth
@@ -121,11 +127,11 @@ const handleClickOpen = (messageType) => {
               Sign In
             </Button>
             <Grid container>
-              <Grid item xs>
+              {/* <Grid item xs>
               <Link href="#" variant="body2" onClick={() => handleClickOpen('password')}>
               Forgot password?
             </Link>
-              </Grid>
+              </Grid> */}
               <Grid item>
                 <Link href="/StudentSignup" variant="body2">
                   {"Don't have an account? Sign Up"}
@@ -143,9 +149,9 @@ const handleClickOpen = (messageType) => {
         >
           <DialogTitle id="alert-dialog-title">{"Password recovery"}</DialogTitle>
           <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            {dialogMessage}
-          </DialogContentText>
+            <DialogContentText id="alert-dialog-description">
+              {dialogMessage}
+            </DialogContentText>
 
           </DialogContent>
           <DialogActions>

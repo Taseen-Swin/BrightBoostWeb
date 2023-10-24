@@ -2,7 +2,7 @@ import axios from "axios";
 
 const baseURL = "http://localhost:8000";
 
-class ApiService {
+export default class ApiService {
     constructor() {
         this.axiosInstance = axios.create({
             baseURL,
@@ -12,7 +12,7 @@ class ApiService {
     async getRequest(path) {
         try {
             const response = await this.axiosInstance.get(path);
-            return response.data;
+            return { data: response.data, status: response.status };
         } catch (error) {
             throw error;
         }
@@ -21,7 +21,7 @@ class ApiService {
     async postRequest(path, body) {
         try {
             const response = await this.axiosInstance.post(path, body);
-            return response.data;
+            return { data: response.data, status: response.status };
         } catch (error) {
             throw error;
         }
@@ -30,7 +30,7 @@ class ApiService {
     async putRequest(path, body) {
         try {
             const response = await this.axiosInstance.put(path, body);
-            return response.data;
+            return { data: response.data, status: response.status };
         } catch (error) {
             throw error;
         }
@@ -39,7 +39,7 @@ class ApiService {
     async deleteRequest(path) {
         try {
             const response = await this.axiosInstance.delete(path);
-            return response.data;
+            return { data: response.data, status: response.status };
         } catch (error) {
             throw error;
         }
@@ -50,11 +50,35 @@ class ApiService {
         const body = { email, password };
 
         try {
-            return await this.postRequest(path, body);
+            const { data, status } = await this.postRequest(path, body);
+            return { data, status };
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async adminLogin(email, password) {
+        const path = '/admin/login';
+        const body = { email, password };
+
+        try {
+            const { data, status } = await this.postRequest(path, body);
+            return { data, status };
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async tutorLogin(email, password) {
+        const path = '/admin/login';
+        const body = { email, password };
+
+        try {
+            const { data, status } = await this.postRequest(path, body);
+            return { data, status };
         } catch (error) {
             throw error;
         }
     }
 }
 
-export default new ApiService();
