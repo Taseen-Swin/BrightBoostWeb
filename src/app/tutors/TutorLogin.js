@@ -19,7 +19,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-
+import ApiService from '../../services/api.services';
 
 function Copyright(props) {
   return (
@@ -43,31 +43,43 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function TutorLogin() {
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    const i = new FormData(event.currentTarget);
+
+    const apiService = new ApiService();
+    const { data, status } = await apiService.tutorLogin(i.get('email'), i.get('password'));
+    if (status == 200) {
+      const userID = data.user[0].id
+      const userEmail = data.user[0].email
+      console.log(userID)
+      localStorage.setItem('userID', userID);
+      localStorage.setItem('userEmail', userEmail);
+      window.location.href = '/TutorHome'
+    } else {
+      console.log("Response data:", data);
+      console.log("Response status:", status);
+      setDialogMessage("Incorrect Password Or Email");
+      setOpen(true);
+    }
   };
 
-const [open, setOpen] = React.useState(false);
-const [dialogMessage, setDialogMessage] = React.useState(''); // New state
+  const [open, setOpen] = React.useState(false);
+  const [dialogMessage, setDialogMessage] = React.useState(''); // New state
 
-const handleClickOpen = (messageType) => {
-  if (messageType === 'password') {
-    setDialogMessage('Please contact Head of Administrator for password recovery.');
-  } else {
-    setDialogMessage('Please contact Head of Administrator for account creation.');
-  }
-  setOpen(true);
-};
+  const handleClickOpen = (messageType) => {
+    if (messageType === 'password') {
+      setDialogMessage('Please contact Head of Administrator for password recovery.');
+    } else {
+      setDialogMessage('Please contact Head of Administrator for account creation.');
+    }
+    setOpen(true);
+  };
 
 
-const handleClose = () => {
-  setOpen(false);
-};
+  const handleClose = () => {
+    setOpen(false);
+  };
 
 
   return (
@@ -86,11 +98,11 @@ const handleClose = () => {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h4">
-           Bright Boost </Typography>
-            <Typography component="h1" variant="h5" style={{whiteSpace: 'pre-line'}}>
-           After School Programs : Tutor<br /><br /></Typography>
+            Bright Boost </Typography>
+          <Typography component="h1" variant="h5" style={{ whiteSpace: 'pre-line' }}>
+            After School Programs : Tutor<br /><br /></Typography>
           <Typography component="h1" variant="h4">
-           Sign in
+            Sign in
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
@@ -113,10 +125,7 @@ const handleClose = () => {
               id="password"
               autoComplete="current-password"
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
+
             <Button
               type="submit"
               fullWidth
@@ -126,16 +135,12 @@ const handleClose = () => {
               Sign In
             </Button>
             <Grid container>
-              <Grid item xs>
-              <Link href="#" variant="body2" onClick={() => handleClickOpen('password')}>
-              Forgot password?
-            </Link>
-              </Grid>
+
               <Grid item>
 
-              <Link href="#" variant="body2" onClick={() => handleClickOpen('account')}>
-              {"Don't have an account?"}
-            </Link>
+                <Link href="#" variant="body2" onClick={() => handleClickOpen('account')}>
+                  {"Don't have an account?"}
+                </Link>
 
               </Grid>
             </Grid>
@@ -151,9 +156,9 @@ const handleClose = () => {
         >
           <DialogTitle id="alert-dialog-title">{""}</DialogTitle>
           <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            {dialogMessage}
-          </DialogContentText>
+            <DialogContentText id="alert-dialog-description">
+              {dialogMessage}
+            </DialogContentText>
 
           </DialogContent>
           <DialogActions>

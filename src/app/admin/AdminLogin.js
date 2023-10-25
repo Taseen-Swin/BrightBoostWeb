@@ -19,6 +19,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import ApiService from '../../services/api.services';
 
 const darkTheme = createTheme({
   palette: {
@@ -48,13 +49,25 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function AdminLogin() {
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    const i = new FormData(event.currentTarget);
+
+    const apiService = new ApiService();
+    const { data, status } = await apiService.adminLogin(i.get('email'), i.get('password'));
+    if (status == 200) {
+      const userID = data.user[0].id
+      const userEmail = data.user[0].email
+      console.log(userID)
+      localStorage.setItem('userID', userID);
+      localStorage.setItem('userEmail', userEmail);
+      window.location.href = '/AdminHome'
+    } else {
+      console.log("Response data:", data);
+      console.log("Response status:", status);
+      setDialogMessage("Incorrect Password Or Email");
+      setOpen(true);
+    }
   };
 
 const [open, setOpen] = React.useState(false);
@@ -118,10 +131,7 @@ const handleClose = () => {
               id="password"
               autoComplete="current-password"
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
+    
             <Button
               type="submit"
               fullWidth
@@ -131,11 +141,7 @@ const handleClose = () => {
               Sign In
             </Button>
             <Grid container>
-              <Grid item xs>
-              <Link href="#" variant="body2" onClick={() => handleClickOpen('password')}>
-              Forgot password?
-            </Link>
-              </Grid>
+      
               <Grid item>
 
               <Link href="#" variant="body2" onClick={() => handleClickOpen('account')}>

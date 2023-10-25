@@ -57,6 +57,28 @@ export default class ApiService {
         }
     }
 
+    async adminLogin(email, password) {
+        const path = '/admin/login';
+        const body = { email, password };
+
+        try {
+            const { data, status } = await this.postRequest(path, body);
+            return { data, status };
+        } catch (error) {
+            throw error;
+        }
+    }
+    async tutorLogin(email, password) {
+        const path = '/tutor/login';
+        const body = { email, password };
+
+        try {
+            const { data, status } = await this.postRequest(path, body);
+            return { data, status };
+        } catch (error) {
+            throw error;
+        }
+    }
     async studentRegistration(email, password) {
         const path = '/student/signup';
         const body = { email, password };
@@ -168,7 +190,7 @@ export default class ApiService {
         }
     }
 
-    async postStudentFeedback(feedbackData) {
+    async postStudentFeedback(feedbackData, studentID) {
         const path = `/student/${studentID}/feedback`;
 
         try {

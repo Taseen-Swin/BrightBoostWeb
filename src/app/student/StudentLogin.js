@@ -20,6 +20,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { redirect } from "react-router-dom";
 
 function Copyright(props) {
   return (
@@ -46,23 +47,26 @@ export default function SignIn() {
     const apiService = new ApiService();
     const { data, status } = await apiService.studentLogin(i.get('email'), i.get('password'));
     if (status == 200) {
-      const userID =data.user[0].id
-      const userEmail =data.user[0].email
+      const userID = data.user[0].id
+      const userEmail = data.user[0].email
       console.log(userID)
-      localStorage.setItem('userID',userID);
-      localStorage.setItem('userEmail',userEmail);
-  
+      localStorage.setItem('userID', userID);
+      localStorage.setItem('userEmail', userEmail);
+      window.location.href = '/StudentHome'
+    } else {
+      console.log("Response data:", data);
+      console.log("Response status:", status);
+      setDialogMessage("Incorrect Password Or Email");
+      setOpen(true);
     }
-    console.log("Response data:", data);
-    console.log("Response status:", status);
   };
   const [open, setOpen] = React.useState(false);
   const [dialogMessage, setDialogMessage] = React.useState(''); // New state
 
   const handleClickOpen = (messageType) => {
-    if (messageType === 'password') {
-      setDialogMessage('Please contact Head of Administrator for password recovery.');
-    }
+    // if (messageType === 'password') {
+    setDialogMessage('Please contact Head of Administrator for password recovery.');
+    // }
     setOpen(true);
   };
   const handleClose = () => {
@@ -147,7 +151,7 @@ export default function SignIn() {
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
         >
-          <DialogTitle id="alert-dialog-title">{"Password recovery"}</DialogTitle>
+          <DialogTitle id="alert-dialog-title">{"Error"}</DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
               {dialogMessage}
