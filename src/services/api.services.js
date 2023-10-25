@@ -79,9 +79,9 @@ export default class ApiService {
             throw error;
         }
     }
-    async studentRegistration(email, password) {
+    async studentRegistration(email, password, name) {
         const path = '/student/signup';
-        const body = { email, password };
+        const body = { email, password, name };
 
         try {
             const { data, status } = await this.postRequest(path, body);

@@ -14,13 +14,14 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CenteredTabs from '../../components/CenteredTab';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
+import ApiService from '../../services/api.services';
 
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://bit.ly/3BlS71b">
-      Bright Boost
+        Bright Boost
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -33,13 +34,36 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignUp() {
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    const form_data = new FormData(event.currentTarget);
+    const formData = {
+      email: form_data.get('email'),
+      password: form_data.get('password'),
+      firstname: form_data.get('firstName'),
+      lastname: form_data.get('lastName'),
+    };
+
+    const isAnyEmpty = Object.values(formData).some(value => value === '');
+
+    if (isAnyEmpty) {
+      alert('One or more fields are empty');
+    } else {
+      const api = new ApiService();
+      const { data, status } = await api.studentRegistration(form_data.get('email'), form_data.get('password'), form_data.get('firstName') + form_data.get('lastName'));
+      if (status == 200) {
+
+        const userID = data.UserID;
+        // console.log(data)
+        localStorage.setItem('userID', userID);
+        window.location.href = '/StudentHome'
+      } else {
+        alert("Sign Up Failed")
+      }
+
+    }
+
+
   };
 
   return (
@@ -84,7 +108,7 @@ export default function SignUp() {
                   autoComplete="family-name"
                 />
               </Grid>
-              <Grid item xs={12}>
+              {/* <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
@@ -92,7 +116,7 @@ export default function SignUp() {
                   label="StudentID"
                   name="studentid"
                 />
-              </Grid>
+              </Grid> */}
               <Grid item xs={12}>
                 <TextField
                   required

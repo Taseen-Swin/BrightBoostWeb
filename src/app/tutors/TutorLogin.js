@@ -134,16 +134,7 @@ export default function TutorLogin() {
             >
               Sign In
             </Button>
-            <Grid container>
-
-              <Grid item>
-
-                <Link href="#" variant="body2" onClick={() => handleClickOpen('account')}>
-                  {"Don't have an account?"}
-                </Link>
-
-              </Grid>
-            </Grid>
+      
           </Box>
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
