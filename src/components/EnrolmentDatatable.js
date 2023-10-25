@@ -96,18 +96,17 @@ export default function StudentDataTable() {
   const fetchData = async () => {
     const api = new ApiService();
     const response = await api.getStudentEnrollments(4);
-    //  console.log(response.data)
+  
     setData(response.data.data);
 
   };
 
   useEffect(() => {
-    // if (!dataFetched) {
+  
     fetchData();
-    //setDataFetched(true);
-    //}
+   
   }, []);
-  // fetchData();
+
 
   const columns = [
     { field: 'id', headerName: 'Class ID', width: 70 },

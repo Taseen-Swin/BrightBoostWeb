@@ -146,8 +146,8 @@ export default class ApiService {
         }
     }
 
-    async getStudentTimetable() {
-        const path = '/student/timetable';
+    async getTimetable(userID) {
+        const path = `/timetable/${userID}`;
 
         try {
             const { data, status } = await this.getRequest(path);

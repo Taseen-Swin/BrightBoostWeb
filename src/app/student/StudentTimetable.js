@@ -8,7 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Navbar from '../../components/Navbar';
 import StudentSideNav from './StudentSideNav';
-import { TimetableComp } from '../../components/TimetableComp';
+import { Timetable } from '../../components/Timetable';
 
 
 const DrawerHeader = styled('div')(({ theme }) => ({
@@ -52,7 +52,7 @@ export default function StudentTimetable() {
         <Typography paragraph>
           Place for statistic and graph
         </Typography>
-        <TimetableComp></TimetableComp>
+        <Timetable></Timetable>
 
       </Box>
     </Box>
