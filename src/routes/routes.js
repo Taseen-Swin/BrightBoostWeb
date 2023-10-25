@@ -2,6 +2,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import {
   createBrowserRouter,
+  
 } from "react-router-dom";
 import App  from "../app/App";
 import SideNav from '../components/SideNav';
@@ -44,7 +45,7 @@ const router = createBrowserRouter([
     element: <StudentHome/>,
   },
   {
-    path: "StudentQA",
+    path: "StudentQA/:sessionID",
     element: <StudentQA/>,
   },
   {
@@ -54,6 +55,7 @@ const router = createBrowserRouter([
   {
     path: "StudentEnrolment",
     element: <StudentEnrolment/>,
+    
   },
   {
     path: "StudentLogin",
