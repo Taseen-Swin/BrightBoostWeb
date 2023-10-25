@@ -9,6 +9,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Navbar from '../../components/Navbar';
 import StudentSideNav from './StudentSideNav';
 import StudentQnABoard from '../../components/StudentQnABoard';
+import QAForStudent from '../../components/QAForStudent';
 
 const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -48,7 +49,7 @@ export default function StudentQA() {
     <Box component="main" sx={{flexGrow: 1, p: 3}}>
         <DrawerHeader />
         <Typography component="h1" variant="h4" sx={{flexGrow: 1, p: 1}}>Student Q&A</Typography>
-          <StudentQnABoard></StudentQnABoard>
+          <QAForStudent></QAForStudent>
       </Box>
     </Box>
 

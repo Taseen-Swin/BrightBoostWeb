@@ -32,7 +32,7 @@ const API = {
   postQuestion: (id, question) => Promise.resolve(true), // This should ideally update the database or backend system
 };
 
-function StudentQnABoard() {
+function  StudentQnABoard() {
   const [courses, setCourses] = useState([]);
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [question, setQuestion] = useState('');

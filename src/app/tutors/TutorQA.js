@@ -9,6 +9,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Navbar from '../../components/Navbar';
 import TutorQnABoard from '../../components/TutorQnABoard';
 import TutorSideNav from './TutorSideNav';
+import QATutor from '../../components/QATutor';
 
 const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -48,7 +49,7 @@ export default function TutorQA() {
     <Box component="main" sx={{flexGrow: 1, p: 3}}>
         <DrawerHeader />
         <Typography component="h1" variant="h4" sx={{flexGrow: 1, p: 1}}>Tutor Q&A</Typography>
-        <TutorQnABoard></TutorQnABoard>
+        <QATutor></QATutor>
       </Box>
     </Box>
 
