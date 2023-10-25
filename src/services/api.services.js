@@ -162,14 +162,15 @@ export default class ApiService {
 
         try {
             const { data, status } = await this.getRequest(path);
-            return { data, status };
+            return data;
         } catch (error) {
             throw error;
         }
     }
 
     async getStudentEnrollments(studentID) {
-        const path = `/student/${studentID}/enrollments`;
+       
+        const path =`/student/${studentID}/enrolements`
 
         try {
             const { data, status } = await this.getRequest(path);
@@ -179,11 +180,12 @@ export default class ApiService {
         }
     }
 
-    async enrollStudentInClass(studentID, enrollmentData) {
-        const path = `/student/${studentID}/enrollments`;
+    async enrollStudentInClass(studentID, courseID) {
+        const path = `/student/${studentID}/enrolements`;
+        const body = { courseID };
 
         try {
-            const { data, status } = await this.postRequest(path, enrollmentData);
+            const { data, status } = await this.postRequest(path, body);
             return { data, status };
         } catch (error) {
             throw error;
