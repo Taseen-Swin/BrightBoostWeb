@@ -46,13 +46,9 @@ export default function AdminQA() {
     <SideNav/>
     <Box component="main" sx={{flexGrow: 1, p: 3}}>
         <DrawerHeader />
-        <Typography component="h1" variant="h4" sx={{flexGrow: 1, p: 1}}>Class Q&A</Typography>
-        <Typography paragraph>
-          Classes
-        </Typography>
-        <Typography paragraph>
-        Number of Question asked: ......
-        </Typography>
+        <Typography component="h1" variant="h4" sx={{flexGrow: 1, p: 3}}>Class Q&A details</Typography>
+    
+
         <AdminQATutorInfo></AdminQATutorInfo>
        
       </Box>

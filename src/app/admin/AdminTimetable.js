@@ -8,7 +8,7 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import AdminEnrolmentDatatable from '../../components/AdminEnrolmentDatatable';
-import { TimetableComp } from '../../components/TimetableComp';
+import { Timetable } from '../../components/Timetable';
 
 
 const DrawerHeader = styled('div')(({ theme }) => ({
@@ -49,7 +49,7 @@ export default function AdminTimetable() {
     <Box component="main" sx={{flexGrow: 1, p: 3}}>
         <DrawerHeader />
         <Typography component="h1" variant="h4" sx={{flexGrow: 1, p: 1}}>Admin Timetable Page</Typography>
-        <TimetableComp></TimetableComp>
+        <Timetable></Timetable>
           </Box>
     </Box>
  

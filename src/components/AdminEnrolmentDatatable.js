@@ -63,7 +63,7 @@ export default function AdminDataTable() {
     const rows = row.map((data) => ({
         id: data.course_id,
         course_name:data.course_name ,
-        student_enrolled: data.student_enrolled +'/' +data.student_enrolled ,
+        student_enrolled: data.student_enrolled +'/' +data.total_student ,
         enrollment_percentage: data.enrollment_percentage+' %',
         course_attendance: data.course_attendence +'/'+data.course_enrolments,
         attendance_percentage:data.attendance_percentage+' %',
