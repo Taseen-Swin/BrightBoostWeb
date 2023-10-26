@@ -8,9 +8,10 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Navbar from '../../components/Navbar';
 import StudentSideNav from './StudentSideNav';
-import StudentQnABoard from '../../components/StudentQnABoard';
+
 import ApiService from '../../services/api.services';
 import Button from '@mui/material/Button';
+import QAForStudent from '../../components/QAForStudent';
 
 const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -139,6 +140,7 @@ export default function StudentQA() {
               </Typography>
             </Box>
           </Box>
+          <QAForStudent></QAForStudent>
         </Box>
       </Box>
 
