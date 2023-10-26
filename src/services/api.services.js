@@ -256,8 +256,8 @@ export default class ApiService {
 
     ////////////////////////////////////////////
 
-    async getClassStats() {
-        const path = '/admin/classes/stats';
+    async getCourseStats() {
+        const path = '/admin/course/stats';
 
         try {
             const { data, status } = await this.getRequest(path);
@@ -267,8 +267,8 @@ export default class ApiService {
         }
     }
 
-    async getQnAStats() {
-        const path = '/admin/QnA/stats';
+    async getTutorQnAStats() {
+        const path = '/admin/TutorQnA/stats';
 
         try {
             const { data, status } = await this.getRequest(path);

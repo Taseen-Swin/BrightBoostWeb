@@ -51,7 +51,7 @@ export default function AdminHome() {
         <DrawerHeader />
         <Typography component="h1" variant="h4" sx={{flexGrow: 1, p: 1}}>Admin Homepage</Typography>
         <Typography paragraph>
-          Class statistic
+          Course statistic
         </Typography>
         <AdminEnrolmentDatatable></AdminEnrolmentDatatable>
     
