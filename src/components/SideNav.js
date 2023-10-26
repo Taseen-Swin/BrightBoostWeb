@@ -206,26 +206,7 @@ export default function SideNav() {
                 <ListItemText primary="Timetable" sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
-            <ListItem disablePadding sx={{ display: 'block' }} onClick={()=>{navigate("/AdminFeedback")}}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
-                  }}
-                >
-                  <FeedbackIcon />
-                </ListItemIcon>
-                <ListItemText primary="Class Feedback" sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
+
             <ListItem disablePadding sx={{ display: 'block' }} onClick={()=>{navigate("/AdminStatistic")}}>
               <ListItemButton
                 sx={{

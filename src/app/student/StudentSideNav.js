@@ -165,26 +165,6 @@ export default function StudentSideNav() {
               </ListItemButton>
             </ListItem>
 
-            <ListItem disablePadding sx={{ display: 'block' }} onClick={()=>{navigate("/StudentQA")}}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
-                  }}
-                >
-                  <QuestionAnswerIcon />
-                </ListItemIcon>
-                <ListItemText primary="Class Q & A" sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
 
             <ListItem disablePadding sx={{ display: 'block' }} onClick={()=>{navigate("/StudentTimetable")}}>
               <ListItemButton
