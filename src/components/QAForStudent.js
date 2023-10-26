@@ -36,8 +36,8 @@ function QAForStudent() {
 
   const fetchAnswers = async () => {
     const api = new ApiService();
-    const response = await api.getStudentAnswerList(session_id);
-    const rows = response.data.data;
+     const { data, status }= await api.getStudentAnswerList(session_id);
+    const rows = data.data;
 
     setAnsweredQuestions(rows.filter(item => item.answerstatus === 'done'));
     setPendingQuestions(rows.filter(item => item.answerstatus === 'pending'));

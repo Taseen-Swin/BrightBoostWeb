@@ -220,6 +220,40 @@ export default class ApiService {
         }
     }
 
+    async endSession(sessionID) {
+        const path = `/tutor/session/end`;
+        const body = { sessionID }
+
+        try {
+            const { data, status } = await this.postRequest(path, body);
+            return { data, status };
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async getTutorQuestion(sessionID) {
+        const path = `/tutor/${sessionID}/QnA`;
+
+        try {
+            const { data, status } = await this.getRequest(path);
+            return { data, status };
+        } catch (error) {
+            throw error;
+        }
+    }
+    async postAnswer(sessionID,tutorID,answer,questionID) {
+        const path = `/tutor/${sessionID}/QnA`;
+        const body ={tutorID,answer,questionID}
+
+        try {
+            const { data, status } = await this.postRequest(path,body);
+            return { data, status };
+        } catch (error) {
+            throw error;
+        }
+    }
+
     ////////////////////////////////////////////
 
     async getClassStats() {
