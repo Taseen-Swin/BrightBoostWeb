@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Typography, Paper, Grid } from '@mui/material';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Rectangle, Legend, PieChart, Pie } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Rectangle, Legend, PieChart, Pie,Line,LineChart } from 'recharts';
 import ApiService from '../services/api.services';
 
 function Statistics() {
@@ -76,17 +76,26 @@ function Statistics() {
         value: parseInt(row.qna_percentage) //need to link with feedback score database
     }));
 
-    console.log(studentFeedbackData)
+    const [enrolemetOverTime, setenrolemetOverTime] = React.useState([]);
+    const getenrolemetOverTime = async () => {
+        const api = new ApiService();
+        const { data, status } = await api.getenrolemetOverTime();
+        if (status == 200) {
+            setenrolemetOverTime(data.data);
+        }
+    };
+    const eot = Array.from(enrolemetOverTime);
 
-    const tutorResponsivenessData = rows.map(row => ({
-        name: row.course_name,
-        value: row.qna_percentage //need to link with feedback score database
+    const tutorResponsivenessData = eot.map(row => ({
+        name: row.enrollment_month,
+        value: row.enrollment_count //need to link with feedback score database
     }));
 
     useEffect(() => {
         studentSessionAttend() // Fetch data every 5 seconds
         getQuestionAnswerEachSession()
         getQuestionAnswerEachCoursePercenatge()
+        getenrolemetOverTime()
         // Clean up the interval when the component unmounts
 
     }, []);
@@ -94,56 +103,74 @@ function Statistics() {
     return (
         <Box sx={{ maxWidth: 1200, mx: 'auto', mt: 5 }}>
 
-        <Grid container spacing={3}>
-     
-    
-            <Grid item xs={12} md={6}>
-                <Typography variant="h6" align="center">
-                    Students attend each session
-                </Typography>
-                <ResponsiveContainer width="100%" height={300}>
-                    <BarChart data={studentParticipationData}>
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="name" />
-                        <YAxis />
-                        <Tooltip />
-                        <Bar dataKey="value" fill={"#8884d8"} />
-                    </BarChart>
-                </ResponsiveContainer>
-            </Grid>
+            <Grid container spacing={3}>
 
-            <Grid item xs={12} md={6}>
-                <Typography variant="h6" align="center">
-                    Questions are answered Percentage in each subject area.
-                </Typography>
-                <ResponsiveContainer width="100%" height={300}>
-                    <PieChart>
-                        <Pie dataKey="value" data={studentFeedbackData} cx="50%" cy="50%" innerRadius={40} outerRadius={80} fill="#82ca9d" />
-                        <Tooltip />
-                    </PieChart>
-                </ResponsiveContainer>
+
+                <Grid item xs={12} md={6}>
+                    <Typography variant="h6" align="center">
+                        Students attend each session
+                    </Typography>
+                    <ResponsiveContainer width="100%" height={300}>
+                        <BarChart data={studentParticipationData}>
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="name" />
+                            <YAxis />
+                            <Tooltip />
+                            <Bar dataKey="value" fill={"#8884d8"} />
+                        </BarChart>
+                    </ResponsiveContainer>
+                </Grid>
+
+                <Grid item xs={12} md={6}>
+                    <Typography variant="h6" align="center">
+                        Questions are answered Percentage in each subject area.
+                    </Typography>
+                    <ResponsiveContainer width="100%" height={300}>
+                        <PieChart>
+                            <Pie dataKey="value" data={studentFeedbackData} cx="50%" cy="50%" innerRadius={40} outerRadius={80} fill="#82ca9d" />
+                            <Tooltip />
+                        </PieChart>
+                    </ResponsiveContainer>
+                </Grid>
+
+                <Grid item xs={12} md={6}>
+                    <Typography variant="h6" align="center">
+                        Questions are answered during each session about each subject area.
+                    </Typography>
+                    <ResponsiveContainer width="100%" height={300}>
+                        <BarChart data={tutorParticipationData}>
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="name" />
+                            <YAxis />
+                            <Tooltip />
+                            <Legend />
+                            <Bar dataKey="Questions_count" fill="#8884d8" activeDot={{ fill: 'pink', stroke: 'blue' }} />
+                            <Bar dataKey="Answer_Reponse" fill="#82ca9d" activeDot={{ fill: 'gold', stroke: 'purple' }} />
+                        </BarChart>
+                    </ResponsiveContainer>
+                </Grid>
+
+                <Grid item xs={12} md={6}>
+                    <Typography variant="h6" align="center">
+                        Enrolment OverTime Graph
+                    </Typography>
+                    <ResponsiveContainer width="100%" height={300}>
+                        <LineChart      data={tutorResponsivenessData}
+                        >
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="name" />
+                            <YAxis />
+                            <Tooltip />
+                            <Legend />
+                            <Line type="monotone" dataKey="value" stroke="#8884d8" activeDot={{ r: 8 }} />
+                    
+                        </LineChart>
+                    </ResponsiveContainer>
+                </Grid>
+
             </Grid>
-    
-            <Grid item xs={12} md={6}>
-                <Typography variant="h6" align="center">
-                    Questions are answered during each session about each subject area.
-                </Typography>
-                <ResponsiveContainer width="100%" height={300}>
-                    <BarChart data={tutorParticipationData}>
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="name" />
-                        <YAxis />
-                        <Tooltip />
-                        <Legend />
-                        <Bar dataKey="Questions_count" fill="#8884d8" activeDot={{ fill: 'pink', stroke: 'blue' }} />
-                        <Bar dataKey="Answer_Reponse" fill="#82ca9d" activeDot={{ fill: 'gold', stroke: 'purple' }} />
-                    </BarChart>
-                </ResponsiveContainer>
-            </Grid>
-    
-        </Grid>
-    </Box>
-    
+        </Box>
+
     );
 }
 

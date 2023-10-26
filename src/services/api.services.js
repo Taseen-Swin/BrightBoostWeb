@@ -310,6 +310,17 @@ export default class ApiService {
         }
     }
 
+    async getenrolemetOverTime() {
+        const path = '/admin/enrolemetOverTime/stats';
+
+        try {
+            const { data, status } = await this.getRequest(path);
+            return { data, status };
+        } catch (error) {
+            throw error;
+        }
+    }
+
     //////////////////////////////////
 
     async getQnAsList() {
