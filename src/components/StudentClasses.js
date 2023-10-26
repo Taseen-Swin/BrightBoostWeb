@@ -33,7 +33,7 @@ export default function StudentClasses() {
     Day: course.session_day,
     Time: course.session_slot,
     session_id: course.session_id,
-    isActive: course.isActive === "0", // Convert to boolean
+    isActive: course.isActive === "1", // Convert to boolean
   }));
 
   // Function to handle class selection

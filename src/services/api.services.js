@@ -102,8 +102,8 @@ export default class ApiService {
         }
     }
 
-    async getStudentClass() {
-        const path = '/student/class';
+    async getStudentClass(sessionID) {
+        const path = `/student/${sessionID}/class`;
 
         try {
             const { data, status } = await this.getRequest(path);
@@ -113,11 +113,22 @@ export default class ApiService {
         }
     }
 
-    async markStudentAttendance(attendanceData) {
-        const path = '/student/attendance';
+    async getStudentAttendance(studentID, sessionID) {
+        const path = `/student/${studentID}/attendence/${sessionID}`;
 
         try {
-            const { data, status } = await this.postRequest(path, attendanceData);
+            const { data, status } = await this.getRequest(path);
+            return { data, status };
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async markStudentAttendance(studentID, sessionID) {
+        const path = `/student/${studentID}/attendence/${sessionID}`;
+
+        try {
+            const { data, status } = await this.postRequest(path, null);
             return { data, status };
         } catch (error) {
             throw error;
@@ -157,20 +168,20 @@ export default class ApiService {
         }
     }
 
-    async getStudentCourses() {
-        const path = '/student/courses';
+    // async getStudentCourses() {
+    //     const path = '/student/courses';
 
-        try {
-            const { data, status } = await this.getRequest(path);
-            return data;
-        } catch (error) {
-            throw error;
-        }
-    }
+    //     try {
+    //         const { data, status } = await this.getRequest(path);
+    //         return data;
+    //     } catch (error) {
+    //         throw error;
+    //     }
+    // }
 
     async getStudentEnrollments(studentID) {
-       
-        const path =`/student/${studentID}/enrolements`
+
+        const path = `/student/${studentID}/enrolements`
 
         try {
             const { data, status } = await this.getRequest(path);
