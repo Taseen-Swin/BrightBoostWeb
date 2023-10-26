@@ -8,7 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Navbar from '../../components/Navbar';
 import TutorSideNav from './TutorSideNav';
-import { TimetableComp } from '../../components/TimetableComp';
+import { Timetable } from '../../components/Timetable';
 
 
 const DrawerHeader = styled('div')(({ theme }) => ({
@@ -49,7 +49,7 @@ export default function TutorTimetable() {
     <Box component="main" sx={{flexGrow: 1, p: 3}}>
         <DrawerHeader />
         <Typography component="h1" variant="h4" sx={{flexGrow: 1, p: 1}}>Tutor Timetable</Typography>
-        <TimetableComp></TimetableComp>
+        <Timetable></Timetable>
 
       </Box>
     </Box>

@@ -158,8 +158,8 @@ export default class ApiService {
         }
     }
 
-    async getTimetable(userID) {
-        const path = `/timetable/${userID}`;
+    async getTimetable(userID,type) {
+        const path = `${type}/timetable/${userID}`;
 
         try {
             const { data, status } = await this.getRequest(path);
@@ -242,12 +242,12 @@ export default class ApiService {
             throw error;
         }
     }
-    async postAnswer(sessionID,tutorID,answer,questionID) {
+    async postAnswer(sessionID, tutorID, answer, questionID) {
         const path = `/tutor/${sessionID}/QnA`;
-        const body ={tutorID,answer,questionID}
+        const body = { tutorID, answer, questionID }
 
         try {
-            const { data, status } = await this.postRequest(path,body);
+            const { data, status } = await this.postRequest(path, body);
             return { data, status };
         } catch (error) {
             throw error;

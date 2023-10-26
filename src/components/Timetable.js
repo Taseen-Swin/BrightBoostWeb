@@ -70,10 +70,12 @@ export function Timetable() {
     const [value, setValue] = React.useState(0);
 
     const [data, setData] = useState([]); // Store the data from the API
+    const userType='tutor'
 
     const fetchData = async () => {
         const api = new ApiService();
-        const response = await api.getTimetable(4);
+        
+        const response = await api.getTimetable(2,userType);
         setData(response.data.data);
     };
 

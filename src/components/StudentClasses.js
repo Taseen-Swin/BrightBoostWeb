@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Typography, List, ListItem, ListItemText } from '@mui/material';
 import ApiService from '../services/api.services';
+import Button from '@mui/material/Button';
 
 export default function StudentClasses() {
   const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -55,12 +56,13 @@ export default function StudentClasses() {
           {rows.map(cls => (
             <ListItem
               key={cls.id}
-              onClick={() => handleClassClick(cls.session_id)}
-              button={cls.isActive} // Make it clickable only for active classes
+              style={{ width: '400px', alignItems: 'space-between', marginLeft: '80px' }}
+              // onClick={() => handleClassClick(cls.session_id)}
+              // button={cls.isActive} // Make it clickable only for active classes
             >
               <ListItemText primary={cls.Course} secondary={cls.Time} />
               {cls.isActive && (
-                <Typography style={{ color: 'green' ,marginLeft:'40px'}}>IsActive</Typography>
+                <Button variant="contained" color="primary" onClick={() => handleClassClick(cls.session_id)}>Join Now</Button>
               )}
             </ListItem>
           ))}
