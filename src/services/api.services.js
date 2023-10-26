@@ -169,16 +169,6 @@ export default class ApiService {
         }
     }
 
-    // async getStudentCourses() {
-    //     const path = '/student/courses';
-
-    //     try {
-    //         const { data, status } = await this.getRequest(path);
-    //         return data;
-    //     } catch (error) {
-    //         throw error;
-    //     }
-    // }
 
     async getStudentEnrollments(studentID) {
 
@@ -204,16 +194,33 @@ export default class ApiService {
         }
     }
 
-    async postStudentFeedback(feedbackData, studentID) {
-        const path = `/student/${studentID}/feedback`;
+
+    ////////////////////////////////////////
+
+    async getTutorClasses(tutorID) {
+        const path = `/tutor/classes/${tutorID}`;
 
         try {
-            const { data, status } = await this.postRequest(path, feedbackData);
+            const { data, status } = await this.getRequest(path);
             return { data, status };
         } catch (error) {
             throw error;
         }
     }
+
+    async startSession(courseID) {
+        const path = `/tutor/session`;
+        const body = { courseID }
+
+        try {
+            const { data, status } = await this.postRequest(path, body);
+            return { data, status };
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    ////////////////////////////////////////////
 
     async getClassStats() {
         const path = '/admin/classes/stats';

@@ -111,7 +111,7 @@ const router = createBrowserRouter([
     element: <TutorHome/>,
   },
   {
-    path: "TutorQA",
+    path: "TutorQA/:sessionID",
     element: <TutorQA/>,
   },
   {
