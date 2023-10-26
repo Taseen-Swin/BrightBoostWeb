@@ -278,6 +278,40 @@ export default class ApiService {
         }
     }
 
+    async getstudentSessionAttend() {
+        const path = '/admin/studentSessionAttend/stats';
+
+        try {
+            const { data, status } = await this.getRequest(path);
+            return { data, status };
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async getQuestionAnswerEachSession() {
+        const path = '/admin/QuestionAnswerEachSession/stats';
+
+        try {
+            const { data, status } = await this.getRequest(path);
+            return { data, status };
+        } catch (error) {
+            throw error;
+        }
+    }
+    async getQuestionAnswerEachCoursePercenatge() {
+        const path = '/admin/QuestionAnswerEachCoursePercenatge/stats';
+
+        try {
+            const { data, status } = await this.getRequest(path);
+            return { data, status };
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    //////////////////////////////////
+
     async getQnAsList() {
         const path = '/admin/classes/QnAs';
 
