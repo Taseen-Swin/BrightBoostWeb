@@ -60,7 +60,7 @@ export default function StudentClasses() {
             >
               <ListItemText primary={cls.Course} secondary={cls.Time} />
               {cls.isActive && (
-                <Typography style={{ color: 'green' }}>IsActive</Typography>
+                <Typography style={{ color: 'green' ,marginLeft:'40px'}}>IsActive</Typography>
               )}
             </ListItem>
           ))}

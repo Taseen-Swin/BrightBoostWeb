@@ -117,7 +117,7 @@ export default function StudentQA() {
                 Student Q&A
               </Typography>
               <Typography component="h6" variant="h6" sx={{ p: 1, alignSelf: 'flex-start' }}>
-                {classData.course_name} {attdata.MarkStatus}
+                {classData.course_name} 
               </Typography>
             </Box>
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>

@@ -135,19 +135,20 @@ export default class ApiService {
         }
     }
 
-    async postStudentQuestion(questionData) {
-        const path = '/student/QnA';
+    async postStudentQuestion(sessionID, studentID, question) {
+        const path = `/student/QnA/${sessionID}`;
+        const body = { question, studentID }
 
         try {
-            const { data, status } = await this.postRequest(path, questionData);
+            const { data, status } = await this.postRequest(path, body);
             return { data, status };
         } catch (error) {
             throw error;
         }
     }
 
-    async getStudentAnswerList() {
-        const path = '/student/QnA';
+    async getStudentAnswerList(sessionID) {
+        const path = `/student/QnA/${sessionID}`;
 
         try {
             const { data, status } = await this.getRequest(path);
