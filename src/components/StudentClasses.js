@@ -15,8 +15,12 @@ export default function StudentClasses() {
   const fetchData = async () => {
     try {
       const api = new ApiService();
-      const response = await api.getStudentClasses(4);
-      setData(response.data.data);
+      const { data, status }= await api.getStudentClasses(4);
+      if(status==200){
+
+        setData(data.data);
+      }
+
       setLoading(false);
     } catch (error) {
       setError(error);

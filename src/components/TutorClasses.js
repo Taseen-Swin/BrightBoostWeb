@@ -15,8 +15,11 @@ export default function TutorClasses() {
   const fetchData = async () => {
     try {
       const api = new ApiService();
-      const response = await api.getTutorClasses(2);
-      setData(response.data.data);
+      const { data, status }= await api.getTutorClasses(5);
+      if(status==200){
+        setData(data.data);
+      }
+     
       setLoading(false);
     } catch (error) {
       setError(error);
