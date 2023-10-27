@@ -45,7 +45,7 @@ function a11yProps(index) {
 const handleItemClick = (row) => {
 
     alert(`Clicked item: ${row.Course}`);
-  };
+};
 
 function CardTemplate(props) {
     const { row } = props;
@@ -70,13 +70,21 @@ export function Timetable() {
     const [value, setValue] = React.useState(0);
 
     const [data, setData] = useState([]); // Store the data from the API
-    const userType='admin'
+
 
     const fetchData = async () => {
+        const userID = localStorage.getItem('userID')
+        if (userID == null) {
+            window.location.href = '/'
+          }
+      
+        const userType = localStorage.getItem('type')
         const api = new ApiService();
-        
-        const response = await api.getTimetable(2,userType);
-        setData(response.data.data);
+
+        const { data, status } = await api.getTimetable(userID, userType);
+        if (status == 200) {
+            setData(data.data);
+        }
     };
 
     useEffect(() => {

@@ -55,8 +55,9 @@ export default function SignUp() {
 
         const userID = data.UserID;
         // console.log(data)
-        localStorage.setItem('userID', userID);
-        window.location.href = '/StudentHome'
+        // localStorage.setItem('userID', userID);
+        alert("Sucessfull")
+        window.location.href = '/StudentLogin'
       } else {
         alert("Sign Up Failed")
       }
@@ -155,7 +156,7 @@ export default function SignUp() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="/" variant="body2">
+                <Link href="/StudentLogin" variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>

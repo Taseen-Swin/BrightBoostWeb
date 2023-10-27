@@ -14,8 +14,13 @@ export default function TutorClasses() {
 
   const fetchData = async () => {
     try {
+      const userID = localStorage.getItem('userID')
+      if (userID == null) {
+        window.location.href = '/'
+      }
+  
       const api = new ApiService();
-      const { data, status }= await api.getTutorClasses(5);
+      const { data, status }= await api.getTutorClasses(userID);
       if(status==200){
         setData(data.data);
       }

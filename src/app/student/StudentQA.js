@@ -72,9 +72,13 @@ export default function StudentQA() {
 
 
   const fetchAttendence = async () => {
+    const userID = localStorage.getItem('userID')
+    if (userID == null) {
+      window.location.href = '/'
+    }
 
     const api = new ApiService();
-    const { data, status } = await api.getStudentAttendance(4, session_id);
+    const { data, status } = await api.getStudentAttendance(userID, session_id);
     if (status == 200) {
    
       setAttData(data.data[0]);
@@ -94,7 +98,8 @@ export default function StudentQA() {
 
   const handleClick = async () => {
     const api = new ApiService();
-    const { data, status } = await api.markStudentAttendance(4,session_id)
+    const userID = localStorage.getItem('userID')
+    const { data, status } = await api.markStudentAttendance(userID,session_id)
     if (status == 200) {
        console.log(data.message)
        fetchSessionDetails();

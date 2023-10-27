@@ -21,7 +21,8 @@ function QAForStudent() {
   const handleAskQuestion = async () => {
     const api = new ApiService();
     if (question.trim()) {
-      const { data, status } = await api.postStudentQuestion(session_id, 4, question)
+      const userID = localStorage.getItem('userID')
+      const { data, status } = await api.postStudentQuestion(session_id, userID, question)
       if (status == 200) {
         fetchAnswers();
       } else {

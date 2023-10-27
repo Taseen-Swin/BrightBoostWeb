@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Avatar,
   Button,
@@ -11,12 +11,27 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import { useNavigate } from 'react-router-dom';
 
 function Profile() {
-    const navigate = useNavigate();
+
+  const navigate = useNavigate();
   const handleLogout = () => {
     // Handle logout logic here
+
+
+    localStorage.clear();
     console.log('Logged out');
     navigate('/');
   };
+  const [items, setItems] = useState("");
+
+  useEffect(() => {
+    const userEmail = localStorage.getItem('userEmail')
+
+    if (userEmail) {
+      setItems(userEmail);
+    }
+
+  }, []);
+
 
   return (
     <Box component="main" maxWidth="xs" sx={{ mt: 8, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -32,11 +47,8 @@ function Profile() {
         >
           <AccountCircle fontSize="large" />
         </Avatar>
-        <Typography component="h1" variant="h5">
-          User's Name
-        </Typography>
         <Typography variant="body2" color="textSecondary">
-          user@example.com
+          {items}
         </Typography>
         <Button
           type="button"

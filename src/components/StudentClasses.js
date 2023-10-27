@@ -14,8 +14,13 @@ export default function StudentClasses() {
 
   const fetchData = async () => {
     try {
+      const userID = localStorage.getItem('userID')
+      if (userID == null) {
+        window.location.href = '/'
+      }
+  
       const api = new ApiService();
-      const { data, status }= await api.getStudentClasses(4);
+      const { data, status }= await api.getStudentClasses(userID);
       if(status==200){
 
         setData(data.data);
@@ -29,6 +34,7 @@ export default function StudentClasses() {
   };
 
   useEffect(() => {
+    
     fetchData();
   }, []);
 

@@ -43,27 +43,31 @@ const drawerWidth = 240;
 
 
 export default function AdminHome() {
+  const userID = localStorage.getItem('userID')
+  if (userID == null) {
+    window.location.href = '/'
+  }
   return (
     <>
-    <Box sx={{ display: 'flex' }}>
-    <SideNav/>
-    <Box component="main" sx={{flexGrow: 1, p: 3}}>
-        <DrawerHeader />
-        <Typography component="h1" variant="h4" sx={{flexGrow: 1, p: 1}}>Admin Homepage</Typography>
-        <Typography paragraph>
-          Course statistic
-        </Typography>
-        <AdminEnrolmentDatatable></AdminEnrolmentDatatable>
-    
-        <Typography paragraph>
-          Tutor Q&A statistic
-        </Typography>
-        <AdminQADatatable></AdminQADatatable>
+      <Box sx={{ display: 'flex' }}>
+        <SideNav />
+        <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+          <DrawerHeader />
+          <Typography component="h1" variant="h4" sx={{ flexGrow: 1, p: 1 }}>Admin Homepage</Typography>
+          <Typography paragraph>
+            Course statistic
+          </Typography>
+          <AdminEnrolmentDatatable></AdminEnrolmentDatatable>
 
+          <Typography paragraph>
+            Tutor Q&A statistic
+          </Typography>
+          <AdminQADatatable></AdminQADatatable>
+
+        </Box>
       </Box>
-    </Box>
 
-     </>
+    </>
   )
 }
 

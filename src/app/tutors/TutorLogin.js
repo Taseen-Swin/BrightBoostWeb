@@ -52,9 +52,11 @@ export default function TutorLogin() {
     if (status == 200) {
       const userID = data.user[0].id
       const userEmail = data.user[0].email
+      const type = data.user[0].type
       console.log(userID)
       localStorage.setItem('userID', userID);
       localStorage.setItem('userEmail', userEmail);
+      localStorage.setItem('type', type);
       window.location.href = '/TutorHome'
     } else {
       console.log("Response data:", data);

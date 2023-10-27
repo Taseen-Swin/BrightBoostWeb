@@ -7,16 +7,21 @@ import ApiService from '../services/api.services';
 
 
 
-const ActionButton = ({ id, enrol,onAction }) => {
+const ActionButton = ({ id, enrol, onAction }) => {
 
   const isEnrolled = enrol == 1 ? true : false;
 
   const handleClick = async () => {
+    const userID = localStorage.getItem('userID');
+    if (userID == null) {
+      window.location.href = '/'
+    }
+
     const api = new ApiService();
-    const { data, status } = await api.enrollStudentInClass(4,id)
+    const { data, status } = await api.enrollStudentInClass(userID, id)
     if (status == 200) {
       onAction();
-    }else{
+    } else {
       alert("error has occured")
     }
     // setEnrolledIds(prevIds => [...prevIds, id]);
@@ -94,17 +99,22 @@ export default function StudentDataTable() {
   };
 
   const fetchData = async () => {
+    const userID = localStorage.getItem('userID')
+    if (userID == null) {
+      window.location.href = '/'
+    }
+
     const api = new ApiService();
-    const response = await api.getStudentEnrollments(4);
-  
+    const response = await api.getStudentEnrollments(userID);
+
     setData(response.data.data);
 
   };
 
   useEffect(() => {
-  
+
     fetchData();
-   
+
   }, []);
 
 
@@ -123,19 +133,8 @@ export default function StudentDataTable() {
       headerName: 'Action',
       sortable: false,
       width: 230,
-      renderCell: (params) => <ActionButton id={params.row.id} enrol={params.row.enrol}  onAction={fetchData}/>,
-    },
-    {
-      field: 'feedback',
-      headerName: 'Feedback',
-      sortable: false,
-      width: 150,
-      renderCell: () => (
-        <Button variant="outlined" color="primary" onClick={handleOpenFeedback}>
-          Give Feedback
-        </Button>
-      ),
-    },
+      renderCell: (params) => <ActionButton id={params.row.id} enrol={params.row.enrol} onAction={fetchData} />,
+    }
   ];
 
   const row = Array.from(data);
@@ -162,7 +161,6 @@ export default function StudentDataTable() {
         }}
         pageSizeOptions={[5, 10]}
       />
-      <FeedbackDialog open={feedbackOpen} onClose={handleCloseFeedback} />
     </div>
   );
 }

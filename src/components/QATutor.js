@@ -39,8 +39,9 @@ function QATutor() {
   const handleAnswerQuestion =  async (questionIndex) => {
     const currentAnswer = Answers[questionIndex];
     if (currentAnswer.trim()) {
+      const userID = localStorage.getItem('userID')
       const api = new ApiService();
-      const { data, status } = await api.postAnswer(session_id, 2, currentAnswer,questionIndex)
+      const { data, status } = await api.postAnswer(session_id, userID, currentAnswer,questionIndex)
       if (status == 200) {
         setPendingQuestions('')
         fetchQuestion();
