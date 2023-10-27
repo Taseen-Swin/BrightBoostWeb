@@ -27,7 +27,7 @@ export default function AdminDataTable() {
         { field: 'enrollment_percentage', headerName: 'Enrollment Percentage', width: 230 },
         { field: 'course_attendance', headerName: 'Course Attendance /Total Enrolments', width: 330 },
         { field: 'attendance_percentage', headerName: 'Course Attendance Percentage', width:230 },
-        { field: 'avg_course_att_perc', headerName: 'Avg Session Attendance per Student Percentage', width: 330 },
+        // { field: 'avg_course_att_perc', headerName: 'Avg Session Attendance per Student Percentage', width: 330 },
     ];
     
 
@@ -66,8 +66,7 @@ export default function AdminDataTable() {
         student_enrolled: data.student_enrolled +'/' +data.total_student ,
         enrollment_percentage: data.enrollment_percentage+' %',
         course_attendance: data.course_attendence +'/'+data.course_enrolments,
-        attendance_percentage:data.attendance_percentage+' %',
-        avg_course_att_perc:data.avg_course_att_perc+' %'
+        attendance_percentage:data.attendance_percentage+' %'
     }));
     return (
         <div style={{ height: 400, width: '100%' }}>
